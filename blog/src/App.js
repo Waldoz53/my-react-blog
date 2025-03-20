@@ -8,19 +8,13 @@ function App() {
   const [content, setContent] = useState("")
   const [editingId, setEditingId] = useState(null)
 
-  // loads posts from localstorage
+  // loads posts from postgresql database
   useEffect(() => {
     fetch(API_URL)
       .then(res => res.json())
       .then(data => setPosts(data))
       .catch(err => console.error("Error fetching posts:", err))
   }, [])
-  // saves posts to local storage whenever posts changes
-  // useEffect(() => {
-  //   if (posts.length > 0) {
-  //     localStorage.setItem("posts", JSON.stringify(posts))
-  //   }
-  // }, [posts])
 
   async function addPost() {
     if (!title || !content) {
@@ -65,6 +59,7 @@ function App() {
       </div>
 
       <div className='posts-container'>
+        {posts.length > 0 ? '' : "No posts available."}
         {posts.map((post) => (
           <div key={post.id} className="post-container">
             { editingId === post.id ? (

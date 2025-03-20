@@ -12,13 +12,6 @@ const pool = new Pool({
 app.use(cors())
 app.use(express.json())
 
-// Serves front end + build files
-app.use(express.static(path.join(__dirname, "../blog/build")))
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../blog/build/index.html"))
-})
-
 // Get all posts
 app.get("/posts", async (req, res) => {
   const result = await pool.query("SELECT * FROM posts ORDER BY date DESC")
@@ -49,6 +42,13 @@ app.delete("/posts/:id", async (req, res) => {
   const { id } = req.params
   await pool.query("DELETE FROM posts WHERE id = $1", [id])
   res.json({ success: true })
+})
+
+// Serves front end + build files
+app.use(express.static(path.join(__dirname, "../blog/build")))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../blog/build/index.html"))
 })
 
 // Start server
