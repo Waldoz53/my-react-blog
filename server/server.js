@@ -1,6 +1,7 @@
 require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
+const path = require("path")
 const { Pool } = require("pg")
 
 const app = express()
@@ -10,6 +11,13 @@ const pool = new Pool({
 
 app.use(cors())
 app.use(express.json())
+
+// Serves front end + build files
+app.use(express.static(path.join(__dirname, "../blog/build")))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../blog/build/index.html"))
+})
 
 // Get all posts
 app.get("/posts", async (req, res) => {

@@ -1,14 +1,10 @@
 # Basic React Blog
 A pretty straight forward basic React/Express/PostgreSQL/Node blog.
+Also uses a CORS npm module to create real CORS
 
-You can fetch, create, edit and delete posts
+You can fetch, create, edit and delete posts.
 
-Not currently in build mode, so you have to run, in the blog folder:
-```
-npm start
-```
-
-then, in the server folder:
+Simply run this from the server folder to get the app working:
 ```
 node server.js
 ```
