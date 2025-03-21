@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     fetch(API_URL)
       .then(res => res.json())
-      .then(data => setPosts(data))
+      .then(data => setPosts(data || []))
       .catch(err => console.error("Error fetching posts:", err))
   }, [])
 
