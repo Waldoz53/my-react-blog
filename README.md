@@ -8,8 +8,3 @@ Simply run this from the server folder to get the app working, assuming you've g
 ```
 node server.js
 ```
-
-## Todo List
-1. Create a docker container for this
-2. Host it somewhere
-3. Set up a CI/CD pipeline
